@@ -36,7 +36,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run Robot Framework
         run: |
-          -v ${PWD}/reports:/opt/robotframework/reports:Z \
+          --rm \
+          ls \
+          -v "$PWD/tests":/home/robot/tests \
+          -v "$PWD/results":/home/robot/results \
+          -v "$PWD}/reports:/opt/robotframework/reports:Z \
           -v ${PWD}/tests:/opt/robotframework/tests:Z \
           robotframework/rfdocker:latest \
           tests
