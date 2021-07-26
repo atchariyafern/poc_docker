@@ -28,6 +28,10 @@ jobs:
       # Runs a single command using the runners shell
       - name: Create a folder for reports
         run: mkdir reports
+        
+      - name: Check docker version
+        run: docker --version
+
 
       # Runs a set of commands using the runners shell
       - name: Run Robot Framework
