@@ -29,19 +29,19 @@ jobs:
       matrix:
         include:
           - browser: "chrome"
-          - browser: "firefox"
+#           - browser: "firefox"
     env:
       BROWSER: ${{ matrix.browser }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Build image
-        run: docker build . --tag $IMAGE_NAME
+#       - name: Build image
+#         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
         
       - name: Run Robot Tests
-        run: docker run --shm-size=1g -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z -e BROWSER=$BROWSER -e ROBOT_OPTIONS="-v ENV=staging" $IMAGE_NAME
+        run: docker run --shm-size=1g -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z -e BROWSER=$BROWSER -e ROBOT_OPTIONS="-v ENV=staging"
 
       - name: Upload run results
         uses: actions/upload-artifact@v1
