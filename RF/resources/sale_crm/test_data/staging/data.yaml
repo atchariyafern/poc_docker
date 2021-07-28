@@ -1,0 +1,8 @@
+url_crm_sabye_songkran: https://staging-crm.sabye-songkran.com/
+GATEWAY_SESSION: https://staging-crm.sabye-songkran.com/
+API_HOST: https://staging-crm.sabye-songkran.com/
+
+#=============== TEST ACCOUNT ================
+#staging
+username: dung10@gmail.com
+password: Dungnguyen@

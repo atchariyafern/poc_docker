@@ -1,0 +1,3 @@
+txt_username: //*[@name='identifier']
+txt_password: //*[@name='password']
+btn_signin: //*[@id="root"]/div/div/form/div[3]/button
