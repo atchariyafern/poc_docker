@@ -41,7 +41,7 @@ jobs:
 #         run: docker run -e ROBOT_OPTIONS="-v ENV=staging" -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
         
       - name: Build image
-        run: docker restart wonderful_kalam
+        run: docker run bbc8c235ad70
 #         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
         
