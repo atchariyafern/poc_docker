@@ -36,7 +36,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-#       - name: Build image
+      - name: Build image
+        run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
         
       - name: Run Robot Tests
