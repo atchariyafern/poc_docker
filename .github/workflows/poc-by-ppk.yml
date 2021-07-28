@@ -33,8 +33,10 @@ jobs:
     env:
       BROWSER: ${{ matrix.browser }}
     steps:
-      - name: Run Robot Tests
+      - name: Checkout
         uses: actions/checkout@v2
+        
+      - name: Run Robot Tests
         run: |
           docker run \
             -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
