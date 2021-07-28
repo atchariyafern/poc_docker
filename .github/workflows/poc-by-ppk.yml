@@ -36,15 +36,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
-      - name: Run Robot Tests
-        run: docker run -e ROBOT_OPTIONS="robot poc.robot" 
+#       - name: Run Robot Tests
+#         run: docker run -e ROBOT_OPTIONS="robot poc.robot" 
 #         run: docker run -e ROBOT_OPTIONS="-v ENV=staging" -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
         
-#       - name: Build image
-#         run: git clone https://github.com/{username}/{repo}.git
-#         git remote add origin https://WutthiphatK666:zxcpsA202!@github.com/WutthiphatK666/poc_docker.git
-# https://github.com/WutthiphatK666/poc_docker.git
-#         run: docker build https://github.com/WutthiphatK666/poc_docker.git
+      - name: Build image
+        run: docker run $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
         
