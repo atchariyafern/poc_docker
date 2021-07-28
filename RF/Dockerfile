@@ -152,9 +152,8 @@ ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
 VOLUME ${ROBOT_REPORTS_DIR}
 
 USER ${ROBOT_UID}:${ROBOT_GID}
+echo ${ROBOT_UID}:${ROBOT_GID}
 
 # A dedicated work folder to allow for the creation of temporary files
 WORKDIR ${ROBOT_WORK_DIR}
-
-# Execute all robot tests
-CMD ["run-tests-in-virtual-screen.sh"]
+echo ${ROBOT_WORK_DIR}
