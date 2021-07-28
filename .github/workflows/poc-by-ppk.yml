@@ -33,22 +33,26 @@ jobs:
     env:
       BROWSER: ${{ matrix.browser }}
     steps:
-      - name: Checkout
+      - name: Run Robot Tests
         uses: actions/checkout@v2
+        run: |
+          docker run \
+            -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
         
-      - name: Build image
-        run: git remote add origin https://WutthiphatK666:zxcpsA202!@github.com/WutthiphatK666/poc_docker.git
+#       - name: Build image
+#         run: git clone https://github.com/{username}/{repo}.git
+#         git remote add origin https://WutthiphatK666:zxcpsA202!@github.com/WutthiphatK666/poc_docker.git
 # https://github.com/WutthiphatK666/poc_docker.git
 #         run: docker build https://github.com/WutthiphatK666/poc_docker.git
 #         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
         
-      - name: Run Robot Tests
-        run: |
-            docker run \
-            -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
-            -e BROWSER=$BROWSER \
-            -e ROBOT_OPTIONS="-v ENV=staging" \
+#       - name: Run Robot Tests
+#         run: |
+#             docker run \
+#             -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
+#             -e BROWSER=$BROWSER \
+#             -e ROBOT_OPTIONS="-v ENV=staging" \
 
       - name: Upload run results
         uses: actions/upload-artifact@v1
