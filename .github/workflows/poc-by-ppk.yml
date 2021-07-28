@@ -43,7 +43,7 @@ jobs:
       - name: Build image
 #         run: docker run wutthiphatk666/poc-docker:latest
 #         run: docker build . --tag $IMAGE_NAME
-        run: docker build . --tag $IMAGE_NAME --file Dockerfile
+        run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
         
       - name: Run Robot Tests
         run: |
