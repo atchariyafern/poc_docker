@@ -152,8 +152,8 @@ ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
 VOLUME ${ROBOT_REPORTS_DIR}
 
 USER ${ROBOT_UID}:${ROBOT_GID}
-echo ${ROBOT_UID}:${ROBOT_GID}
+RUN echo ${ROBOT_UID}:${ROBOT_GID}
 
 # A dedicated work folder to allow for the creation of temporary files
 WORKDIR ${ROBOT_WORK_DIR}
-echo ${ROBOT_WORK_DIR}
+RUN echo ${ROBOT_WORK_DIR}
