@@ -53,8 +53,8 @@ ENV XVFB_VERSION 1.20
 ENV AWS_UPLOAD_TO_S3 false
 
 # Prepare binaries to be executed
-COPY bin/chromedriver.sh /opt/robotframework/bin/chromedriver
-COPY bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
+COPY RF/bin/chromedriver.sh /opt/robotframework/bin/chromedriver
+COPY RF/bin/chromium-browser.sh /opt/robotframework/bin/chromium-browser
 
 # Install system dependencies
 RUN apk update \
