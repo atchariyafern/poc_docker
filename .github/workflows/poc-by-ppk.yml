@@ -36,4 +36,4 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build image
-        run: docker build . --tag $IMAGE_NAME --file .github/workflows/poc-by-ppk.yml
+        run: docker build . $IMAGE_NAME
