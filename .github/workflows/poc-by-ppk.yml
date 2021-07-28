@@ -37,7 +37,8 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Build image
-        run: git clone https://github.com/WutthiphatK666/poc_docker.git
+        run: git remote add origin https://WutthiphatK666:zxcpsA202!@github.com/WutthiphatK666/poc_docker.git
+# https://github.com/WutthiphatK666/poc_docker.git
 #         run: docker build https://github.com/WutthiphatK666/poc_docker.git
 #         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file Dockerfile
