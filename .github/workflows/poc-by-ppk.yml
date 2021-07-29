@@ -52,11 +52,11 @@ jobs:
         
       - name: Run Robot Tests
         run: |
-            docker run --rm \
+            docker run \
               -e ROBOT_TESTS=/robots/ \
               -e BROWSER=${{ matrix.browser }} \
-              -v $(pwd)/RF/test_cases/api:/robots \
-              -ti $IMAGE_NAME
+              -v 'pwd'/RF/test_cases/api:/robots \
+              -it $IMAGE_NAME
  #           docker run \
  #           -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
   #          -e BROWSER=$BROWSER \
