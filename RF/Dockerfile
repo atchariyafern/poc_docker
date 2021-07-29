@@ -1,4 +1,5 @@
 FROM gliderlabs/alpine:3.3
+FROM python:3.9.0-alpine3.12
 
 # Dependency versions
 ENV ALPINE_GLIBC 2.31-r0
@@ -23,7 +24,29 @@ ENV XVFB_VERSION 1.20
 ENV JSON_LIBRARY_VERSION 0.31
 ENV HTTP3_LIBRARY_VERSION 0.6
 
-RUN apk-install bash py-pip firefox xvfb dbus chromium chromium-chromedriver
+# RUN apk-install bash py-pip firefox xvfb dbus chromium chromium-chromedriver
+RUN apt-get install -y wget xvfb unzip
+
+# Set up the Chrome PPA
+RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+# Update the package list and install chrome
+RUN apt-get update -y
+RUN apt-get install -y google-chrome-stable
+
+# Set up Chromedriver Environment variables
+ENV CHROMEDRIVER_VERSION 2.19
+ENV CHROMEDRIVER_DIR /chromedriver
+RUN mkdir $CHROMEDRIVER_DIR
+
+# Download and install Chromedriver
+RUN wget -q --continue -P $CHROMEDRIVER_DIR "http://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+RUN unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
+
+# Put Chromedriver into the PATH
+ENV PATH $CHROMEDRIVER_DIR:$PATH
+
 RUN pip3 install --upgrade pip
 RUN pip3 install robotframework==$ROBOT_FRAMEWORK_VERSION
 RUN pip3 install robotframework-seleniumlibrary==$SELENIUM_LIBRARY_VERSION
@@ -32,7 +55,17 @@ RUN pip3 install robotframework-requests==$REQUESTS_VERSION
 RUN pip3 install robotframework-httplibrary3==$HTTP3_LIBRARY_VERSION
 RUN pip3 install PyYAML
 
+# Create the default report and work folders with the default user to avoid runtime issues
+# These folders are writeable by anyone, to ensure the user can be changed on the command line.
+RUN mkdir -p ${ROBOT_REPORTS_DIR} \
+  && mkdir -p ${ROBOT_WORK_DIR} \
+  && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_REPORTS_DIR} \
+  && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_WORK_DIR} \
+  && chmod ugo+w ${ROBOT_REPORTS_DIR} ${ROBOT_WORK_DIR}
+
+
 ADD run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
+
 
 CMD ["run.sh"]
