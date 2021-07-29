@@ -33,8 +33,12 @@ jobs:
     env:
       BROWSER: ${{ matrix.browser }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+#       - name: Checkout
+#         uses: actions/checkout@v2
+      - name: Get id
+        run: docker run ps -a
+
+
         
 #       - name: Run Robot Tests
 #         run: docker run -e ROBOT_OPTIONS="robot poc.robot" 
@@ -43,8 +47,8 @@ jobs:
       - name: Build image
 #         run: docker run wutthiphatk666/poc-docker:latest
 #         run: docker build . --tag $IMAGE_NAME
-#         run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
-        run: docker build . -t $IMAGE_NAME --file RF/Dockerfile-old
+        run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
+#         run: docker build . -t $IMAGE_NAME --file RF/Dockerfile-old
         
       - name: Run Robot Tests
         run: |
