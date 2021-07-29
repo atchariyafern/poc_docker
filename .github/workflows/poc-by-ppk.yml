@@ -43,14 +43,21 @@ jobs:
       - name: Build image
 #         run: docker run wutthiphatk666/poc-docker:latest
 #         run: docker build . --tag $IMAGE_NAME
-        run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
+#         run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
+        run: docker build -t $IMAGE_NAME --file RF/Dockerfile
         
       - name: Run Robot Tests
         run: |
-            docker run \
-            -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
-            -e BROWSER=$BROWSER \
-            -e ROBOT_OPTIONS="-v ENV=staging" \
+            docker run --rm \
+              -e ROBOT_TESTS=/robots/ \
+              -e BROWSER=${{ matrix.browser }} \
+              -v $(pwd)/RF/test_cases/api:/robots \
+              -ti $IMAGE_NAME
+ #           docker run \
+ #           -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
+  #          -e BROWSER=$BROWSER \
+   #         -e ROBOT_OPTIONS="-v ENV=staging" \
+            
 
       - name: Upload run results
         uses: actions/upload-artifact@v1
