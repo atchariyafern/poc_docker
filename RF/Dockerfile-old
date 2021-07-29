@@ -123,13 +123,6 @@ RUN apk update \
     && rm glibc-bin-$ALPINE_GLIBC.apk \
     && rm /etc/apk/keys/sgerrand.rsa.pub \
 
-# Download Gecko drivers directly from the GitHub repository
-  && wget -q "https://github.com/mozilla/geckodriver/releases/download/$GECKO_DRIVER_VERSION/geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz" \
-    && tar xzf geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-    && mkdir -p /opt/robotframework/drivers/ \
-    && mv geckodriver /opt/robotframework/drivers/geckodriver \
-    && rm geckodriver-$GECKO_DRIVER_VERSION-linux64.tar.gz \
-
 # Clean up buildtime dependencies
   && apk del --no-cache --update-cache .build-deps
 
@@ -152,8 +145,6 @@ ENV PATH=/opt/robotframework/bin:/opt/robotframework/drivers:$PATH
 VOLUME ${ROBOT_REPORTS_DIR}
 
 USER ${ROBOT_UID}:${ROBOT_GID}
-RUN echo ${ROBOT_UID}:${ROBOT_GID}
 
 # A dedicated work folder to allow for the creation of temporary files
 WORKDIR ${ROBOT_WORK_DIR}
-RUN echo ${ROBOT_WORK_DIR}
