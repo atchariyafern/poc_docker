@@ -63,7 +63,7 @@ jobs:
 #         run: ls
         env:
           ENV: staging
-        run: robot RF/test_cases
+        run: robot -v $ENV RF/test_cases
         
 
 #       # Runs a set of commands using the runners shell
