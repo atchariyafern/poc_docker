@@ -53,7 +53,7 @@ ENV XVFB_VERSION 1.20
 ENV AWS_UPLOAD_TO_S3 false
 
 # Install Robot Framework and Selenium Library
-  && pip3 install \
+RUN pip3 install \
     --no-cache-dir \
     robotframework==$ROBOT_FRAMEWORK_VERSION \
     robotframework-browser==$BROWSER_LIBRARY_VERSION \
@@ -73,7 +73,7 @@ ENV AWS_UPLOAD_TO_S3 false
 
 # Create the default report and work folders with the default user to avoid runtime issues
 # These folders are writeable by anyone, to ensure the user can be changed on the command line.
-RUN mkdir -p ${ROBOT_REPORTS_DIR} \
+  && mkdir -p ${ROBOT_REPORTS_DIR} \
   && mkdir -p ${ROBOT_WORK_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_REPORTS_DIR} \
   && chown ${ROBOT_UID}:${ROBOT_GID} ${ROBOT_WORK_DIR} \
