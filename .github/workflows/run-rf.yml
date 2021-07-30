@@ -22,6 +22,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.7', '3.9']
+        env: ['staging']
     runs-on: ubuntu-latest
     
 
@@ -29,11 +30,6 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Execute tests
-        uses: joonvena/robotframework-docker-action@v0.1
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}
 
 #       - name: Setup python ${{ matrix.python-version }}
 #         uses: actions/setup-python@v2.2.2
@@ -47,10 +43,15 @@ jobs:
 #           sudo rm -rf /etc/ntp.conf
 #         if: runner.os == 'macOS'
 
-#       - name: Pip install from requirements.txt
-#         run: |
-#           python -m pip install coverage
-#           python -m pip install -r RF/requirements.txt
+      - name: Pip install from requirements.txt
+        run: |
+          python -m pip3 install -r RF/requirements.txt
+
+      - name: Execute tests
+        uses: joonvena/robotframework-docker-action@v0.1
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ${{ github.workspace }}
 
       - name: Check os version
         run: |
