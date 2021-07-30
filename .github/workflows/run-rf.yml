@@ -46,15 +46,16 @@ jobs:
 #           sudo rm -rf /etc/ntp.conf
 #         if: runner.os == 'macOS'
 
-#       - name: Pip install from requirements.txt
-#         run: |
-#           python -m pip install -r RF/requirements.txt
+      - name: Pip install from requirements.txt
+        run: |
+          python -m pip install -r RF/requirements.txt
 
-      - name: Execute tests
-        uses: joonvena/robotframework-docker-action@v1.0
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}
+#       - name: Execute tests
+#         uses: joonvena/robotframework-docker-action@v1.0
+#         env:
+#           BROWSER: chrome
+#           ENV: staging
+#           ROBOT_TESTS_DIR: ${{ github.workspace }}
 
       - name: Check os version
         run: |
@@ -63,7 +64,8 @@ jobs:
           docker ps -all
 
       # Runs a single command using the runners shell
-#       - name: Run a script
+      - name: Run a script
+        run: ls
 #         run: robot -v ENV:staging RF/test_cases/sale_crm/api/poc.robot 
 
 #       # Runs a set of commands using the runners shell
