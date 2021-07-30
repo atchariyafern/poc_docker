@@ -57,16 +57,14 @@ jobs:
 #           ENV: staging
 #           ROBOT_TESTS_DIR: ${{ github.workspace }}
 
-      - name: Check os version
-        run: |
-          python --version
-          docker --version
-          docker ps -all
 
       # Runs a single command using the runners shell
       - name: Run a script
 #         run: ls
+        env:
+          ENV: staging
         run: robot RF/test_cases
+        
 
 #       # Runs a set of commands using the runners shell
 #       - name: Run a multi-line script
