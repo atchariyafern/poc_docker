@@ -17,7 +17,7 @@ on:
 
 env:
   # The image name
-  IMAGE_NAME: docker-robot-framework:ci
+  IMAGE_NAME: docker-rf
 
 jobs:
   # Run tests.
@@ -44,15 +44,19 @@ jobs:
 #         run: docker run wutthiphatk666/poc-docker:latest
 #         run: docker build . --tag $IMAGE_NAME
 #         run: docker build . --tag $IMAGE_NAME --file RF/Dockerfile
-        run: docker build . -t $IMAGE_NAME --file RF/Dockerfile-old
-        
+        run: docker build . -t $IMAGE_NAME --file RF/Dockerfile-mystyle
+     
+      - name: Check version
+        run: robot --version
+     
       - name: Run Robot Tests
-        run: |
-            docker run \
-              -e ROBOT_TESTS=/robots/ \
-              -e BROWSER=${{ matrix.browser }} \
-              -v 'pwd'/RF/test_cases/api:/robots \
-              -it $IMAGE_NAME
+        run: robot -v ENV:staging test_cases 
+#         run: |
+#             docker run \
+#               -e ROBOT_TESTS=/robots/ \
+#               -e BROWSER=${{ matrix.browser }} \
+#               -v 'pwd'/RF/test_cases/api:/robots \
+#               -it $IMAGE_NAME
  #           docker run \
  #           -v `pwd`/RF/test_cases/api:/opt/robotframework/tests:Z \
   #          -e BROWSER=$BROWSER \
