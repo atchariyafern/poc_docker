@@ -44,7 +44,7 @@ Generate Robot Automation Header With Cookie
     [Arguments]  ${url}  ${username}  ${password}  ${headless_mode}=${TRUE}  ${web_driver}=chrome
     run keyword if  ${headless_mode}==${TRUE}  Open Browser  ${url}  headlesschrome
     ...  ELSE  Open Browser  ${url}  ${web_driver}
-    Wait Until Element Is Visible  ${txt_username}  timeout=5s
+    Wait Until Element Is Visible  ${txt_username}  timeout=15s
     Input Text  ${txt_username}  ${username}
     Input Text  ${txt_password}  ${password}
     Click Button  ${btn_signin}
