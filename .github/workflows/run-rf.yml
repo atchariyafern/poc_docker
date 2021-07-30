@@ -42,7 +42,7 @@ jobs:
           sudo rm -rf /etc/ntp.conf
         if: runner.os == 'macOS'
 
-      - name: Run unit tests with coverage
+      - name: Pip install from requirements.txt
         run: |
           python -m pip install coverage
           python -m pip install -r RF/requirements.txt
@@ -53,16 +53,9 @@ jobs:
           docker --version
           docker ps -all
 
-      
-
-
-
-
-
-
-#       # Runs a single command using the runners shell
-#       - name: Run a one-line script
-#         run: robot -v ENV:staging test_cases 
+      # Runs a single command using the runners shell
+      - name: Run a script
+        run: robot -v ENV:staging test_cases 
 
 #       # Runs a set of commands using the runners shell
 #       - name: Run a multi-line script
