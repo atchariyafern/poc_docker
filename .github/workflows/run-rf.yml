@@ -22,7 +22,8 @@ jobs:
 #     strategy:
 #       matrix:
 #         python-version: ['3.7', '3.9']
-        
+    env:
+      ENV: staging
     runs-on: ubuntu-latest
     
 
@@ -31,9 +32,7 @@ jobs:
           
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: Dump GitHub Variable
-        env:
-          ENV: staging
+        
 
 #       - name: Setup python ${{ matrix.python-version }}
 #         uses: actions/setup-python@v2.2.2
