@@ -46,12 +46,12 @@ jobs:
 #           sudo rm -rf /etc/ntp.conf
 #         if: runner.os == 'macOS'
 
-      - name: Pip install from requirements.txt
-        run: |
-          python -m pip install -r RF/requirements.txt
+#       - name: Pip install from requirements.txt
+#         run: |
+#           python -m pip install -r RF/requirements.txt
 
       - name: Execute tests
-        uses: joonvena/robotframework-docker-action@v0.1
+        uses: joonvena/robotframework-docker-action@v1.0
         env:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ${{ github.workspace }}
