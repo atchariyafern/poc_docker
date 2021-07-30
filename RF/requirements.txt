@@ -1,7 +1,6 @@
 # Dependen
 # Install Robot Framework and Selenium Library
 RUN pip3 install \
-    --no-cache-dir \
     robotframework==4.1 \
     robotframework-browser==6.0.0 \
     robotframework-databaselibrary==1.2.4 \
