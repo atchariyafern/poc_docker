@@ -18,9 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      current_date: date +%Y%m%d_%H%M%S
-      now_date: echo now
-      zip_name: rf-test-result-${current_date}
+      d1: echo "${date +%Y%m%d_%H%M%S}"
+      d2: echo "$(date +%Y%m%d_%H%M%S)"
+      d3: echo "date +%Y%m%d_%H%M%S"
+      zip_name: rf-test-result-${d1}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -35,7 +36,7 @@ jobs:
 #         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $zip_name && echo $current_date && echo $now_date
+        run: echo $zip_name && echo $d1 && echo $d2 && echo $d3 && echo $d2
           
 #       - name: Generate report
 #         uses: actions/upload-artifact@v2
