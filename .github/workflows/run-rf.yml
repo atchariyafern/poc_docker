@@ -23,10 +23,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - run: ls
-      
       - name: Create Directory
-        run: mkdir -p reports/$(date +%Y%m%d_%H%M%S)
+
       
       - name: Pip install from requirements.txt
         run: |
@@ -35,6 +33,7 @@ jobs:
       - name: Run a script
         run: robot -v ENV:staging RF/test_cases
         
+      - run: mkdir -p RF/reports/$(date +%Y%m%d_%H%M%S)
       - name: Generate report
         uses: actions/upload-artifact@v2
         with:
