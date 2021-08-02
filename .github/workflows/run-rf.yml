@@ -18,7 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      current_date: $(echo date)
+      current_date: echo date
+      now_date: echo now
       zip_name: rf-test-result-${current_date}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -34,7 +35,7 @@ jobs:
 #         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $zip_name && echo $current_date
+        run: echo $zip_name && echo $current_date && echo $now_date
           
 #       - name: Generate report
 #         uses: actions/upload-artifact@v2
