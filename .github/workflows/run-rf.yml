@@ -32,9 +32,17 @@ jobs:
         
       - name: Create Directory  
         run: mkdir -p RF/reports/$(date +%Y%m%d_%H%M%S)
-        
+          
       - name: Generate report
         uses: actions/upload-artifact@v2
         with:
-          name: OUTPUT FILE
-          path: /home/runner/work/poc_docker/poc_docker/output.xml
+          name: rf-test-result-$(date +%Y%m%d_%H%M%S)
+          path: /home/runner/work/poc_docker/poc_docker/
+          
+#           name: output-$(date +%Y%m%d_%H%M%S)
+#           path: /home/runner/work/poc_docker/poc_docker/output.xml
+          
+#           name: log-$(date +%Y%m%d_%H%M%S)
+#           path: /home/runner/work/poc_docker/poc_docker/log.html
+          
+#           path: /home/runner/work/poc_docker/poc_docker/report.html
