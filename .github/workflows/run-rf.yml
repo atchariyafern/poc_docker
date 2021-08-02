@@ -29,8 +29,7 @@ jobs:
       
       ppk:  "`r format(Sys.date(), '%d %B, %Y')`"
       
-      bash: |
-          d100="$(cat date +%Y%m%d_%H%M%S)"
+
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -44,7 +43,7 @@ jobs:
 #         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $d100 && echo "${d100}" && echo ${d100}
+ 
           
 #       - name: Generate report
 #         uses: actions/upload-artifact@v2
