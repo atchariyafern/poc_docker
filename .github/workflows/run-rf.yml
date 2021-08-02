@@ -22,6 +22,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        run: mkdir -p RF/reports/$(date +%Y%m%d_%H%M%S)
       
       - name: Pip install from requirements.txt
         run: |
@@ -33,5 +34,5 @@ jobs:
       - name: Generate report
         uses: actions/upload-artifact@v2
         with:
-          name: output.xml
+          name: OUTPUT FILE
           path: /home/runner/work/poc_docker/poc_docker/output.xml
