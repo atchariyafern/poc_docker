@@ -24,6 +24,8 @@ jobs:
       zip_name1: rf-test-result-"${d1}"
       zip_name2: rf-test-result-"${d2}"
       zip_name3: rf-test-result-"${d3}"
+      
+      ppk:  "`r format(Sys.date(), '%d %B, %Y')`"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,7 +40,7 @@ jobs:
 #         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $zip_name1 && echo $zip_name2 && echo $zip_name3 && echo $d1 && echo $d2 && echo $d3
+        run: echo $zip_name1 && echo $zip_name2 && echo $zip_name3 && echo $d1 && echo $d2 && echo $d3 && echo ppk
           
 #       - name: Generate report
 #         uses: actions/upload-artifact@v2
