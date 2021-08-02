@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      current_date: $(echo date)
+      zip_name: rf-test-result-$(echo date)
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -32,13 +32,13 @@ jobs:
       - name: Run a script
         run: robot -v ENV:staging RF/test_cases
         
-      - name: Create Directory  
-        run: mkdir -p RF/reports/$(date +%Y%m%d_%H%M%S)
+      - name: echo env
+        run: echo $zip_name
           
       - name: Generate report
         uses: actions/upload-artifact@v2
         with:
-          name: rf-test-result-${current_date}
+          name: "${zip_name}"
           path: |
             /home/runner/work/poc_docker/poc_docker/output.xml
             /home/runner/work/poc_docker/poc_docker/log.html
