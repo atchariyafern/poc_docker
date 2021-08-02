@@ -18,28 +18,29 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      zip_name: rf-test-result-$(echo date)
+      current_date: $(echo date)
+      zip_name: rf-test-result-${current_date}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Pip install from requirements.txt file
-        run: |
-          python -m pip install -r RF/requirements.txt
+#       - name: Pip install from requirements.txt file
+#         run: |
+#           python -m pip install -r RF/requirements.txt
           
-      - name: Run a script
-        run: robot -v ENV:staging RF/test_cases
+#       - name: Run a script
+#         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $zip_name
+        run: echo $zip_name && echo $current_date
           
-      - name: Generate report
-        uses: actions/upload-artifact@v2
-        with:
-          name: "${zip_name}"
-          path: |
-            /home/runner/work/poc_docker/poc_docker/output.xml
-            /home/runner/work/poc_docker/poc_docker/log.html
-            /home/runner/work/poc_docker/poc_docker/report.html
+#       - name: Generate report
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: "${zip_name}"
+#           path: |
+#             /home/runner/work/poc_docker/poc_docker/output.xml
+#             /home/runner/work/poc_docker/poc_docker/log.html
+#             /home/runner/work/poc_docker/poc_docker/report.html
