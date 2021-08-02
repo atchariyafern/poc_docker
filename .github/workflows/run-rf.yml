@@ -17,13 +17,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      current_date: $(echo date)
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Pip install from requirements.txt
+      - name: Pip install from requirements.txt file
         run: |
           python -m pip install -r RF/requirements.txt
           
@@ -36,13 +38,8 @@ jobs:
       - name: Generate report
         uses: actions/upload-artifact@v2
         with:
-          name: rf-test-result-$(date +%Y%m%d_%H%M%S)
-          path: /home/runner/work/poc_docker/poc_docker/
-          
-#           name: output-$(date +%Y%m%d_%H%M%S)
-#           path: /home/runner/work/poc_docker/poc_docker/output.xml
-          
-#           name: log-$(date +%Y%m%d_%H%M%S)
-#           path: /home/runner/work/poc_docker/poc_docker/log.html
-          
-#           path: /home/runner/work/poc_docker/poc_docker/report.html
+          name: rf-test-result-${current_date}
+          path: |
+            /home/runner/work/poc_docker/poc_docker/output.xml
+            /home/runner/work/poc_docker/poc_docker/log.html
+            /home/runner/work/poc_docker/poc_docker/report.html
