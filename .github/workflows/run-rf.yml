@@ -14,6 +14,8 @@ on:
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -26,7 +28,9 @@ jobs:
       zip_name3: rf-test-result-"${d3}"
       
       ppk:  "`r format(Sys.date(), '%d %B, %Y')`"
-
+      
+      bash: |
+          d100="$(cat date +%Y%m%d_%H%M%S)"
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -40,7 +44,7 @@ jobs:
 #         run: robot -v ENV:staging RF/test_cases
         
       - name: echo env
-        run: echo $zip_name1 && echo $zip_name2 && echo $zip_name3 && echo $d1 && echo $d2 && echo $d3 && echo $ppk
+        run: echo $d100 && echo "${d100}" && echo ${d100}
           
 #       - name: Generate report
 #         uses: actions/upload-artifact@v2
