@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      current_date: echo date
+      current_date: date +%Y%m%d_%H%M%S
       now_date: echo now
       zip_name: rf-test-result-${current_date}
 
